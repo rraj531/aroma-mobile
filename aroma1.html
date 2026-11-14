@@ -1,0 +1,357 @@
+<!doctype html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aroma Mobile and Electronics online showroom"
+    />
+    <title>Aroma Mobile &amp; Electronics</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="top-bar">
+      <span>Welcome to Aroma Mobile &amp; Electronics</span
+      ><span>Trusted products. Helpful service.</span>
+    </div>
+    <header class="main-header">
+      <div class="logo">
+        <h1>AROMA</h1>
+        <small>MOBILE &amp; ELECTRONICS</small>
+      </div>
+      <form
+        class="search-box"
+        onsubmit="
+          event.preventDefault();
+          searchProducts();
+        "
+      >
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search mobiles, TVs, laptops and more"
+          aria-label="Search products"
+        /><button type="submit" aria-label="Search">&#128269;</button>
+      </form>
+      <div class="header-actions">
+        <button
+          type="button"
+          onclick="showLocation()"
+          aria-label="Store location"
+        >
+          &#128205;<span>Location</span></button
+        ><button type="button" onclick="openAccount()" aria-label="Account">
+          &#128100;<span>Account</span></button
+        ><button type="button" onclick="openWishlist()" aria-label="Wishlist">
+          &#9829;<span>Wishlist</span
+          ><small id="wishlistCount">0</small></button
+        ><button type="button" onclick="openCart()" aria-label="Cart">
+          &#128722;<span>Cart</span><small id="cartCount">0</small>
+        </button>
+      </div>
+    </header>
+    <nav class="navigation" aria-label="Product categories">
+      <button type="button" onclick="filterCategory('All')">All Products</button
+      ><button type="button" onclick="filterCategory('Mobile')">Mobiles</button
+      ><button type="button" onclick="filterCategory('TV')">Televisions</button
+      ><button type="button" onclick="filterCategory('Laptop')">Laptops</button
+      ><button type="button" onclick="filterCategory('Refrigerator')">
+        Refrigerators</button
+      ><button type="button" onclick="filterCategory('AC')">
+        Air Conditioners</button
+      ><button type="button" onclick="filterCategory('Washing Machine')">
+        Washing Machines</button
+      ><button type="button" onclick="filterCategory('Cooler')">Coolers</button
+      ><button type="button" onclick="filterCategory('Speaker')">
+        Speakers</button
+      ><button type="button" onclick="filterCategory('Accessories')">
+        Accessories</button
+      ><button type="button" onclick="showOffers()">Offers</button>
+    </nav>
+    <main>
+      <section
+        class="hero-offer-slider"
+        id="heroOfferSlider"
+        aria-label="AROMA special offers"
+      >
+        <div id="heroSlides" class="hero-slides"></div>
+        <button
+          id="heroPrev"
+          class="hero-arrow hero-prev"
+          type="button"
+          aria-label="Previous offer"
+        >
+          &#8592;
+        </button>
+        <button
+          id="heroNext"
+          class="hero-arrow hero-next"
+          type="button"
+          aria-label="Next offer"
+        >
+          &#8594;
+        </button>
+        <div id="heroDots" class="hero-dots" aria-label="Offer slides"></div>
+      </section>
+      <section class="bank-offer-section" aria-labelledby="bankOffersTitle">
+        <div class="section-heading-row">
+          <div>
+            <p class="section-eyebrow">PAY SMARTER</p>
+            <h2 id="bankOffersTitle">Extra savings with your card</h2>
+          </div>
+          <div class="carousel-controls">
+            <button
+              id="bankPrev"
+              class="slider-btn"
+              type="button"
+              aria-label="Previous bank offers"
+            >
+              &#8592;</button
+            ><button
+              id="bankNext"
+              class="slider-btn"
+              type="button"
+              aria-label="Next bank offers"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
+        <div id="bankOffers" class="bank-offer-track"></div>
+      </section>
+      <section
+        class="category-showcase"
+        aria-labelledby="categoryShowcaseTitle"
+      >
+        <div class="section-heading-row">
+          <div>
+            <p class="section-eyebrow">SHOP BY CATEGORY</p>
+            <h2 id="categoryShowcaseTitle">Find your next upgrade</h2>
+          </div>
+        </div>
+        <div id="categoryShowcaseItems" class="category-showcase-track"></div>
+      </section>
+      <section class="shop-layout">
+        <aside class="filter-sidebar">
+          <h3>Filter Products</h3>
+          <div class="filter-group">
+            <h4>Brand</h4>
+            <label
+              ><input class="brand-filter" type="checkbox" value="Samsung" />
+              Samsung</label
+            ><label
+              ><input class="brand-filter" type="checkbox" value="LG" />
+              LG</label
+            ><label
+              ><input class="brand-filter" type="checkbox" value="Apple" />
+              Apple</label
+            ><label
+              ><input class="brand-filter" type="checkbox" value="OnePlus" />
+              OnePlus</label
+            ><label
+              ><input class="brand-filter" type="checkbox" value="Boat" />
+              Boat</label
+            ><label
+              ><input class="brand-filter" type="checkbox" value="HP" />
+              HP</label
+            >
+          </div>
+          <div class="filter-group">
+            <h4>Price</h4>
+            <label
+              ><input class="price-filter" type="checkbox" value="0-10000" />
+              Under &#8377;10,000</label
+            ><label
+              ><input
+                class="price-filter"
+                type="checkbox"
+                value="10000-30000"
+              />
+              &#8377;10,000 - &#8377;30,000</label
+            ><label
+              ><input
+                class="price-filter"
+                type="checkbox"
+                value="30000-60000"
+              />
+              &#8377;30,000 - &#8377;60,000</label
+            ><label
+              ><input
+                class="price-filter"
+                type="checkbox"
+                value="60000-1000000"
+              />
+              Above &#8377;60,000</label
+            >
+          </div>
+          <div class="filter-group">
+            <h4>Rating</h4>
+            <label
+              ><input id="ratingFilter" type="checkbox" /> 4 stars &amp;
+              above</label
+            ><label
+              ><input id="stockFilter" type="checkbox" /> In stock only</label
+            >
+          </div>
+          <button
+            class="clear-filter-btn"
+            type="button"
+            onclick="clearFilters()"
+          >
+            Clear filters
+          </button>
+        </aside>
+        <section class="shop-products">
+          <div class="showroom-heading">
+            <div>
+              <p class="section-eyebrow">OUR COLLECTION</p>
+              <h2 id="pageTitle">All Products</h2>
+            </div>
+            <p id="productCount"></p>
+          </div>
+          <div id="productContainer" class="product-grid"></div>
+        </section>
+      </section>
+      <section class="showroom-section">
+        <div class="showroom-heading">
+          <div>
+            <p class="section-eyebrow">AROMA SHOWROOM</p>
+            <h2>See what is waiting in store</h2>
+            <p>Take a quick video tour before you visit us.</p>
+          </div>
+          <div class="showroom-controls">
+            <span class="showroom-live-badge">LIVE SHOWROOM</span
+            ><button
+              id="showroomPrev"
+              class="slider-btn"
+              type="button"
+              aria-label="Previous videos"
+            >
+              &#8592;</button
+            ><button
+              id="showroomNext"
+              class="slider-btn"
+              type="button"
+              aria-label="Next videos"
+            >
+              &#8594;
+            </button>
+          </div>
+        </div>
+        <div id="showroomVideos" class="showroom-videos"></div>
+      </section>
+    </main>
+    <div
+      id="cartModal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Shopping cart"
+    >
+      <div class="details-box">
+        <button class="close-btn" type="button" onclick="closeCart()">
+          &times;
+        </button>
+        <div id="cartContent"></div>
+      </div>
+    </div>
+    <div
+      id="accountModal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Account"
+    >
+      <div class="account-box">
+        <button class="close-btn" type="button" onclick="closeAccount()">
+          &times;
+        </button>
+        <div id="loginSection">
+          <h2 id="accountFormTitle">Sign in</h2>
+          <form
+            id="accountForm"
+            onsubmit="
+              event.preventDefault();
+              loginUser();
+            "
+          >
+            <div id="signupFields" hidden>
+              <input
+                id="loginName"
+                type="text"
+                placeholder="Your name"
+                autocomplete="name"
+              /><input
+                id="loginMobile"
+                type="tel"
+                placeholder="Mobile number (optional)"
+                autocomplete="tel"
+                pattern="[0-9]{10}"
+                maxlength="10"
+              />
+            </div>
+            <input
+              id="loginEmail"
+              type="email"
+              placeholder="Email address"
+              autocomplete="email"
+              required
+            /><input
+              id="loginPassword"
+              type="password"
+              placeholder="Password"
+              autocomplete="current-password"
+              required
+            />
+            <p id="accountError" class="account-error" role="alert" hidden></p>
+            <button
+              id="accountSubmitButton"
+              class="account-main-btn"
+              type="submit"
+            >
+              Sign in</button
+            ><button
+              id="accountModeToggle"
+              class="account-mode-toggle"
+              type="button"
+              onclick="toggleAccountMode()"
+            >
+              Create an account
+            </button>
+          </form>
+        </div>
+        <div id="accountDashboard" style="display: none">
+          <h2 id="welcomeUser"></h2>
+          <div class="account-menu">
+            <button type="button" onclick="showProfile()">Profile</button
+            ><button type="button" onclick="showOrders()">Orders</button
+            ><button type="button" onclick="showAddresses()">Addresses</button
+            ><button type="button" onclick="showCoupons()">Coupons</button
+            ><button type="button" onclick="showEMI()">EMI</button
+            ><button type="button" onclick="logoutUser()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="detailsModal" class="modal" role="dialog" aria-modal="true">
+      <div class="details-box">
+        <button class="close-btn" type="button" onclick="closeDetails()">
+          &times;
+        </button>
+        <div id="detailsContent"></div>
+      </div>
+    </div>
+    <div id="productModal" class="modal" role="dialog" aria-modal="true">
+      <div class="product-details-box">
+        <button class="close-btn" type="button" onclick="closeProductDetails()">
+          &times;
+        </button>
+        <div id="productDetailsContent"></div>
+      </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
